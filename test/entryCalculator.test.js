@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:99fb25fbd6d4b29560391246e6368965aa7293c841868c096ac1b3b581f8ccbb
-size 623
+const assert = require('assert');
+const zoo = require('../src/zoo');
+
+describe('entryCalculator', () => {
+  it('test', () => {
+    let actual;
+
+    // returna 0 se nenhum argumento for passado
+    actual = zoo.entryCalculator();
+    assert.equal(actual, 0);
+
+    // retorna 0 se um objeto vazio for passado
+    actual = zoo.entryCalculator({});
+    assert.equal(actual, 0);
+
+    // retorna o preço total a ser cobrado dado o número de adultos, crianças e
+    // idosos
+    const entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1 };
+    actual = zoo.entryCalculator(entrants);
+
+    assert.equal(actual, 187.94);
+  });
+});
